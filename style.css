@@ -1,0 +1,44 @@
+html,
+body {
+	font-family: "Karla", sans-serif;
+}
+
+.paperBox {
+	display: inline-block;
+	width: 250px;
+	background-color: #f4f4f4;
+	box-shadow: #bbb 0 0 11px;
+	margin: 10px;
+	padding: 10px;
+	/*float: left;*/
+}
+
+h1 {
+}
+
+.boxContainer {
+	width: 100%;
+}
+
+.paperBox h2 {
+	font-size: 18px;
+}
+
+.paperBox img {
+	max-width: 100%;
+}
+
+h3 {
+}
+
+@media print {
+	.paperBox {
+		background-color: #fff;
+		box-shadow: none;
+		border: 1px solid black;
+	}
+
+	a {
+		display: none;
+	}
+}
