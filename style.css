@@ -5,7 +5,7 @@ body {
 
 .grid-item {
 	/*display: inline-block;*/
-	width: 200px;
+	width: 250px;
 	background-color: #f4f4f4;
 	box-shadow: #bbb 0 0 11px;
 	margin: 10px;

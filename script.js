@@ -48,7 +48,7 @@ d3.csv(
 			var msnry = new Masonry(elem, {
 				// options
 				itemSelector: ".grid-item",
-				columnWidth: 240
+				columnWidth: 290
 			});
 		});
 	})
