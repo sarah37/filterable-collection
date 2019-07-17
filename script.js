@@ -1,4 +1,6 @@
-d3.csv("Papers.csv")
+d3.csv(
+	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSw8TQqogki3JTHU-jdofvhu0RjSwgzSM65Z5w-5vDYYSbewBazuZHuxYOqkCUHgP5t-K_MoxStLocX/pub?gid=0&single=true&output=csv"
+)
 	.then(function(data) {
 		console.log(data);
 
