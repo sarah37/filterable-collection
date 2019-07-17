@@ -3,14 +3,13 @@ body {
 	font-family: "Karla", sans-serif;
 }
 
-.paperBox {
-	display: inline-block;
-	width: 250px;
+.grid-item {
+	/*display: inline-block;*/
+	width: 200px;
 	background-color: #f4f4f4;
 	box-shadow: #bbb 0 0 11px;
 	margin: 10px;
 	padding: 10px;
-	/*float: left;*/
 }
 
 h1 {
@@ -20,19 +19,39 @@ h1 {
 	width: 100%;
 }
 
-.paperBox h2 {
+.grid-item h2 {
 	font-size: 18px;
 }
 
-.paperBox img {
+.grid-item img {
 	max-width: 100%;
 }
 
 h3 {
 }
 
+.tag {
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	padding: 0px 4px;
+	margin: 1px 1px;
+}
+
+.tag.geography_representation {
+	background-color: #d8f5ff;
+}
+
+.tag.network_representation {
+	background-color: #fffdd3;
+}
+
+.tag.integration {
+	background-color: #dcf0d1;
+}
+
 @media print {
-	.paperBox {
+	.grid-item {
 		background-color: #fff;
 		box-shadow: none;
 		border: 1px solid black;

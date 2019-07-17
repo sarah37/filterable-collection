@@ -4,26 +4,18 @@ d3.csv(
 	.then(function(data) {
 		console.log(data);
 
-		// var options = ["tbd", "include", "unsure", "exclude"];
-		var options = ["include"];
+		// display count in heading
+		d3.select("#count").text(data.length);
 
-		options.forEach(function(opt) {
-			var container = d3.select("#container_" + opt);
+		// draw boxes for papers
+		var container = d3.select(".grid");
 
-			var div = container
-				.selectAll("div")
-				.data(data.filter(d => d.include == opt))
-				.enter()
-				.append("div")
-				.classed("paperBox", true)
-				.classed("grid-item", true);
-
-			d3.select("#count_" + opt).text(
-				data.filter(d => d.include == opt).length
-			);
-		});
-
-		var div = d3.selectAll(".paperBox");
+		var div = container
+			.selectAll("div")
+			.data(data)
+			.enter()
+			.append("div")
+			.classed("grid-item", true);
 
 		div.append("img").attr("src", d => "img/" + d.image + ".png");
 		div.append("h2").text(d => d.Title);
@@ -36,17 +28,30 @@ d3.csv(
 			.attr("href", d => "https://doi.org/" + d.DOI)
 			.attr("target", "_blank")
 			.text("[DOI Link]");
+		div.append("br");
+
+		[
+			"geography_representation",
+			"network_representation",
+			"integration"
+		].forEach(function(tag) {
+			div
+				.append("div")
+				.classed("tag", true)
+				.classed(tag, true)
+				.html(d => d[tag]);
+		});
+	})
+	.then(function() {
+		imagesLoaded(".grid", function() {
+			var elem = document.querySelector(".grid");
+			var msnry = new Masonry(elem, {
+				// options
+				itemSelector: ".grid-item",
+				columnWidth: 240
+			});
+		});
 	})
 	.catch(function(error) {
 		throw error;
 	});
-
-// Javascript
-// var container = document.querySelector(".grid");
-// var msnry = new Masonry(container, {
-// 	// options
-// 	// columnWidth: 270,
-// 	itemSelector: ".paperBox",
-// 	gutter: 20,
-// 	isFitWidth: true
-// });
