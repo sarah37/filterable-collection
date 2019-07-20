@@ -1,14 +1,17 @@
 html,
 body {
+	margin: 15px;
 	font-family: "Karla", sans-serif;
+	background-color: slategrey;
+	color: #fff;
 }
 
 .grid-item {
-	/*display: inline-block;*/
 	width: 250px;
-	background-color: #f4f4f4;
-	box-shadow: #bbb 0 0 11px;
-	margin: 10px;
+	background-color: #fff;
+	color: #222;
+	box-shadow: #282828 0 0 11px;
+	margin: 10px 0;
 	padding: 10px;
 }
 
@@ -36,6 +39,7 @@ h3 {
 	border-radius: 6px;
 	padding: 0px 4px;
 	margin: 1px 1px;
+	color: #222;
 }
 
 .tag.geography_representation {
