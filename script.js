@@ -31,6 +31,7 @@ d3.csv(
 		div.append("br");
 
 		[
+			"paper_type",
 			"geography_representation",
 			"network_representation",
 			"integration"

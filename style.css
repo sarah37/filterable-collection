@@ -42,6 +42,10 @@ h3 {
 	color: #222;
 }
 
+.tag.paper_type {
+	background-color: #e8e8e8;
+}
+
 .tag.geography_representation {
 	background-color: #d8f5ff;
 }
