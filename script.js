@@ -34,7 +34,8 @@ d3.csv(
 			"paper_type",
 			"geography_representation",
 			"network_representation",
-			"integration"
+			"integration",
+			"interactivity"
 		].forEach(function(tag) {
 			div
 				.append("div")

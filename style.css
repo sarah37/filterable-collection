@@ -58,6 +58,10 @@ h3 {
 	background-color: #dcf0d1;
 }
 
+.tag.interactivity {
+	background-color: #ebd1f0;
+}
+
 @media print {
 	.grid-item {
 		background-color: #fff;
