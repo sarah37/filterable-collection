@@ -1,3 +1,13 @@
+const facets = [
+	"paper_type",
+	"geography_representation",
+	"network_representation",
+	"integration",
+	"interaction"
+];
+
+const container = d3.select(".grid");
+
 d3.csv(
 	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSw8TQqogki3JTHU-jdofvhu0RjSwgzSM65Z5w-5vDYYSbewBazuZHuxYOqkCUHgP5t-K_MoxStLocX/pub?gid=0&single=true&output=csv"
 )
@@ -7,9 +17,56 @@ d3.csv(
 		// display count in heading
 		d3.select("#count").text(data.length);
 
-		// draw boxes for papers
-		var container = d3.select(".grid");
+		// create dropdown menus to filter techniques
+		var filters = d3
+			.select("#filters")
+			.selectAll("select")
+			.data(facets)
+			.enter()
+			.append("select")
+			.classed("input", true)
+			.attr("id", d => "select_" + d);
 
+		filters
+			.append("option")
+			.attr("value", "inactive")
+			.text(d => "Any " + d);
+
+		filters
+			.selectAll("actualOption")
+			.data(d => unique(data, e => e[d]))
+			.enter()
+			.append("option")
+			.classed("actualOption", true)
+			.attr("value", d => d)
+			.text(d => d);
+
+		// listen for changes in dropdown
+		d3.selectAll(".input").on("change", function() {
+			// get filter values
+			var filters = facets.map(function(facet) {
+				return d3.select("#select_" + facet).property("value");
+			});
+			// update
+			refreshTechniques(filters);
+		});
+
+		function refreshTechniques(filters) {
+			// filter
+			var fData = data.filter(d => filterData(d, filters));
+			// update count in heading
+			d3.select("#count").text(fData.length);
+			// get IDs of techniques matching filter
+			var ids = fData.map(d => d.Key);
+			// hide all non-matching ones
+			d3.selectAll(".grid-item").style("display", d =>
+				ids.indexOf(d.Key) != -1 ? null : "none"
+			);
+			// update layout
+			msnry.layout();
+		}
+
+		// draw boxes for papers
 		var div = container
 			.selectAll("div")
 			.data(data)
@@ -30,24 +87,19 @@ d3.csv(
 			.text("[DOI Link]");
 		div.append("br");
 
-		[
-			"paper_type",
-			"geography_representation",
-			"network_representation",
-			"integration",
-			"interactivity"
-		].forEach(function(tag) {
+		// add tags on technique cards
+		facets.forEach(function(facet) {
 			div
 				.append("div")
 				.classed("tag", true)
-				.classed(tag, true)
-				.html(d => d[tag]);
+				.classed(facet, true)
+				.html(d => d[facet]);
 		});
 	})
 	.then(function() {
 		imagesLoaded(".grid", function() {
 			var elem = document.querySelector(".grid");
-			var msnry = new Masonry(elem, {
+			window.msnry = new Masonry(elem, {
 				// options
 				itemSelector: ".grid-item",
 				columnWidth: 270,
@@ -58,3 +110,21 @@ d3.csv(
 	.catch(function(error) {
 		throw error;
 	});
+
+function filterData(d, filters) {
+	return facets
+		.map(function(f, i) {
+			if (filters[i] == "inactive") {
+				return true;
+			} else {
+				return d[f] == filters[i];
+			}
+		})
+		.every(e => e);
+}
+
+function unique(arr, acc) {
+	return arr.map(acc).filter(function(value, index, self) {
+		return self.indexOf(value) === index;
+	});
+}
