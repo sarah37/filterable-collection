@@ -3,7 +3,7 @@ body {
 	margin: 15px;
 	font-family: "Karla", sans-serif;
 	background-color: slategrey;
-	color: #fff;
+	color: #fafafa;
 }
 
 .grid-item {
@@ -60,6 +60,17 @@ h3 {
 
 .tag.interaction {
 	background-color: #ebd1f0;
+}
+
+select {
+	margin: 0 4px;
+	padding: 4px;
+	background-color: #fafafa;
+	border-color: #fafafa;
+	border-radius: 3px;
+	box-shadow: #282828 0 0 8px;
+	font-family: Karla, sans-serif;
+	font-size: 0.9em;
 }
 
 @media print {
