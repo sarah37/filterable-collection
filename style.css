@@ -1,7 +1,7 @@
 html,
 body {
 	margin: 15px;
-	font-family: "Karla", sans-serif;
+	font-family: "Red Hat Text", sans-serif;
 	background-color: slategrey;
 	color: #fafafa;
 }
@@ -10,12 +10,20 @@ body {
 	width: 250px;
 	background-color: #fff;
 	color: #222;
-	box-shadow: #282828 0 0 11px;
+	box-shadow: #282828 0 0 7px;
 	margin: 10px 0;
 	padding: 10px;
 }
 
 h1 {
+	text-transform: uppercase;
+	font-size: 3em;
+	text-shadow: #303235 2px -2px 0px;
+}
+
+h2,
+h3 {
+	text-shadow: #303235 1px -1px 0;
 }
 
 .boxContainer {
@@ -23,23 +31,21 @@ h1 {
 }
 
 .grid-item h2 {
-	font-size: 18px;
+	font-size: 16px;
+	text-shadow: none;
 }
 
 .grid-item img {
 	max-width: 100%;
 }
 
-h3 {
-}
-
 .tag {
 	display: inline-block;
-	border: 1px solid #ccc;
-	border-radius: 6px;
 	padding: 0px 4px;
-	margin: 1px 1px;
+	margin: 3px 3px;
 	color: #222;
+	box-shadow: #55626f 1px -1px 0;
+	border: 1px solid #424c55;
 }
 
 .tag.paper_type {
@@ -66,10 +72,11 @@ select {
 	margin: 0 4px;
 	padding: 4px;
 	background-color: #fafafa;
-	border-color: #fafafa;
+	border: 2px solid #55626f;
+	/*	border-color: #fafafa;
 	border-radius: 3px;
-	box-shadow: #282828 0 0 8px;
-	font-family: Karla, sans-serif;
+	box-shadow: #282828 0 0 8px;*/
+	font-family: "Red Hat Text", sans-serif;
 	font-size: 0.9em;
 }
 
