@@ -14,23 +14,26 @@
 		<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 	</head>
 	<body>
-		<h1>Geographic Network Techniques</h1>
-		⚠️⚠️⚠️ Work in progress ⚠️⚠️⚠️
-		<br /><br />
+		<div class="grid-container">
+			<div id="controls">
+				<h1>Geographic Network Techniques</h1>
+				⚠️⚠️⚠️ Work in progress ⚠️⚠️⚠️
+				<br /><br />
+				Displayed: <span id="count"></span> techniques <br />
+				Colour scheme for tags:
+				<div class="tag paper_type">Type of Paper</div>
+				<div class="tag geography_representation">Geography Representation</div>
+				<div class="tag network_representation">Network Representation</div>
+				<div class="tag integration">Integration</div>
+				<div class="tag interaction">Interaction</div>
+				<br />
 
-		Colour scheme for tags:
-		<div class="tag paper_type">Type of Paper</div>
-		<div class="tag geography_representation">Geography Representation</div>
-		<div class="tag network_representation">Network Representation</div>
-		<div class="tag integration">Integration</div>
-		<div class="tag interaction">Interaction</div>
-		<br />
+				<h3>Filter for specific characteristics:</h3>
+				<div id="filters"></div>
+			</div>
 
-		<h3>Filter for specific characteristics:</h3>
-		<div id="filters"></div>
-
-		<h2>Include in survey (<span id="count"></span>)</h2>
-		<div id="container" class="grid"></div>
+			<div id="container" class="grid"></div>
+		</div>
 
 		<script type="text/javascript" src="script.js"></script>
 	</body>

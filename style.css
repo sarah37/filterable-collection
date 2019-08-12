@@ -1,9 +1,36 @@
 html,
 body {
-	margin: 15px;
+	/*margin: 15px;*/
 	font-family: "Red Hat Text", sans-serif;
 	background-color: slategrey;
 	color: #fafafa;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	grid-template-rows: 1fr;
+	width: 100vw;
+	height: 100vh;
+	align-content: stretch;
+	justify-content: stretch;
+	/*overflow: hidden;*/
+}
+
+#controls {
+	grid-row: 1;
+	grid-column: 1;
+}
+
+#container {
+	grid-row: 1;
+	grid-column: 2;
+	padding: 10px;
+	/*overflow: auto;*/
+}
+
+span #count {
+	font-weight: bold;
 }
 
 .grid-item {
@@ -17,7 +44,7 @@ body {
 
 h1 {
 	text-transform: uppercase;
-	font-size: 3em;
+	font-size: 2.2em;
 	text-shadow: #303235 2px -2px 0px;
 }
 

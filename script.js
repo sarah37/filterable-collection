@@ -1,10 +1,16 @@
-const facets = [
-	"paper_type",
-	"geography_representation",
-	"network_representation",
-	"integration",
-	"interaction"
-];
+const taxonomy = {
+	geography_representation: ["map", "distorted", "abstract"],
+	network_representation: ["low-low", "low-high", "high-low", "high-high"],
+	integration: ["base-geo", "balanced", "base-net"],
+	interaction: [
+		"no-interaction",
+		"optional-interaction",
+		"required-interaction",
+		"interaction-technique"
+	]
+};
+
+const facets = Object.keys(taxonomy);
 
 const container = d3.select(".grid");
 
@@ -17,36 +23,45 @@ d3.csv(
 		// display count in heading
 		d3.select("#count").text(data.length);
 
-		// create dropdown menus to filter techniques
+		// create checkboxes to filter techniques
 		var filters = d3
 			.select("#filters")
-			.selectAll("select")
+			.selectAll("div")
 			.data(facets)
 			.enter()
-			.append("select")
-			.classed("input", true)
+			.append("div")
+			// .classed("input", true)
 			.attr("id", d => "select_" + d);
 
-		filters
-			.append("option")
-			.attr("value", "inactive")
-			.text(d => "Any " + d);
+		filters.append("h3").html(d => d);
 
-		filters
-			.selectAll("actualOption")
-			.data(d => unique(data, e => e[d]))
+		var checkboxes = filters
+			.selectAll("input")
+			.data(d => taxonomy[d])
 			.enter()
-			.append("option")
-			.classed("actualOption", true)
-			.attr("value", d => d)
-			.text(d => d);
+			.append("label");
+
+		checkboxes
+			.append("input")
+			.attr("type", "checkbox")
+			.attr("id", d => "check_" + d)
+			.attr("value", d => d);
+
+		checkboxes.append("span").text(d => d);
 
 		// listen for changes in dropdown
-		d3.selectAll(".input").on("change", function() {
+		d3.selectAll("input").on("change", function() {
 			// get filter values
 			var filters = facets.map(function(facet) {
-				return d3.select("#select_" + facet).property("value");
+				var cats = [];
+				taxonomy[facet].forEach(function(cat) {
+					if (d3.select("#check_" + cat).property("checked")) {
+						cats.push(cat);
+					}
+				});
+				return [facet, cats];
 			});
+
 			// update
 			refreshTechniques(filters);
 		});
@@ -112,15 +127,12 @@ d3.csv(
 	});
 
 function filterData(d, filters) {
-	return facets
-		.map(function(f, i) {
-			if (filters[i] == "inactive") {
-				return true;
-			} else {
-				return d[f] == filters[i];
-			}
-		})
-		.every(e => e);
+	return filters.every(function(fil) {
+		// facet: fil[0]
+		// selected: fil[1]
+		// check if either array is empty or category is selected
+		return fil[1].length == 0 || fil[1].indexOf(d[fil[0]]) != -1;
+	});
 }
 
 function unique(arr, acc) {
