@@ -48,9 +48,32 @@ h1 {
 	text-shadow: #303235 2px -2px 0px;
 }
 
+h2 {
+	margin-bottom: 2px;
+}
+
+h3 {
+	line-height: 20px;
+	font-size: 18px;
+	margin-top: 18px;
+	margin-bottom: 7px;
+}
+
 h2,
 h3 {
 	text-shadow: #303235 1px -1px 0;
+}
+
+hr {
+	border-top: 4px dotted #fafafa;
+}
+
+#showall {
+	border-bottom: 1px solid #fafafa;
+	cursor: pointer;
+}
+#showall:hover {
+	border-bottom: 2px solid #fafafa;
 }
 
 .boxContainer {
@@ -60,6 +83,7 @@ h3 {
 .grid-item h2 {
 	font-size: 16px;
 	text-shadow: none;
+	margin: 8px 0;
 }
 
 .grid-item img {
@@ -75,36 +99,84 @@ h3 {
 	border: 1px solid #424c55;
 }
 
-.tag.paper_type {
+/*.tag.paper_type {
 	background-color: #e8e8e8;
-}
+}*/
 
-.tag.geography_representation {
+.geography_representation,
+#filters
+	#select_geography_representation
+	input[type="checkbox"]:checked
+	+ label {
 	background-color: #d8f5ff;
 }
 
-.tag.network_representation {
+.network_representation,
+#filters #select_network_representation input[type="checkbox"]:checked + label {
 	background-color: #fffdd3;
 }
 
-.tag.integration {
+.integration,
+#filters #select_integration input[type="checkbox"]:checked + label {
 	background-color: #dcf0d1;
 }
 
-.tag.interaction {
+.interaction,
+#filters #select_interaction input[type="checkbox"]:checked + label {
 	background-color: #ebd1f0;
 }
 
-select {
-	margin: 0 4px;
-	padding: 4px;
+/*Checkboxes*/
+div.checkbox-container {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+#filters label {
+	display: block;
+	line-height: 52px;
 	background-color: #fafafa;
-	border: 2px solid #55626f;
-	/*	border-color: #fafafa;
-	border-radius: 3px;
-	box-shadow: #282828 0 0 8px;*/
-	font-family: "Red Hat Text", sans-serif;
-	font-size: 0.9em;
+	color: black;
+	text-align: center;
+	padding: 3px 5px;
+	margin: 2px;
+	border: black 1px solid;
+}
+
+#filters label span {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 3px 5px;
+	line-height: normal; /* Reset line-height for the child. */
+	background: none;
+}
+
+#select_interaction label,
+#select_network_representation label {
+	width: 134px;
+}
+
+#select_geography_representation label,
+#select_integration label {
+	width: 84px;
+}
+
+#filters input[type="checkbox"] {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+#filters .legend_circle {
+	content: "";
+	display: inline-block;
+	padding: 10px;
+	border-radius: 10px;
+	margin-right: 8px;
+	border: 1px solid #34404a;
 }
 
 @media print {

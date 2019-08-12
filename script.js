@@ -10,9 +10,68 @@ const taxonomy = {
 	]
 };
 
+const longWords = {
+	geography_representation: "Geography Representation",
+	map: "Map",
+	distorted: "Distorted Map",
+	abstract: "Abstract",
+	network_representation: "Network Representation",
+	"low-low": "Explicit Nodes & Explicit Edges",
+	"low-high": "Explicit Nodes & Abstract Edges",
+	"high-low": "Abstract Nodes & Explicit Edges",
+	"high-high": "Abstract Nodes & Abstract Edges",
+	integration: "Integration",
+	"base-geo": "Geography as Basis",
+	balanced: "Balanced",
+	"base-net": "Network as Basis",
+	interaction: "User Interaction",
+	"no-interaction": "None",
+	"optional-interaction": "Optional",
+	"required-interaction": "Required",
+	"interaction-technique": "Interaction Technique"
+};
+
 const facets = Object.keys(taxonomy);
 
 const container = d3.select(".grid");
+
+// create checkboxes to filter techniques
+var filters = d3
+	.select("#filters")
+	.selectAll("div")
+	.data(facets)
+	.enter()
+	.append("div")
+	.attr("id", d => "select_" + d);
+
+filters
+	.append("h3")
+	.html(d => '<div class="legend_circle ' + d + '"></div>' + longWords[d]);
+
+var checkboxes = filters
+	.selectAll("input")
+	.data(d => taxonomy[d])
+	.enter()
+	.append("div")
+	.classed("checkbox-container", true);
+checkboxes
+	.append("input")
+	.attr("type", "checkbox")
+	.attr("class", "input")
+	.attr("id", d => "check_" + d)
+	.attr("value", d => d);
+checkboxes
+	.append("label")
+	.attr("for", d => "check_" + d)
+	.append("span")
+	.text(d => longWords[d]);
+
+d3.select("#showall").on("click", function() {
+	d3.selectAll("input").property("checked", false);
+	// dispatch event to reload techniques
+	let event = new Event("change");
+	eventHandler.dispatchEvent(event);
+});
 
 d3.csv(
 	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSw8TQqogki3JTHU-jdofvhu0RjSwgzSM65Z5w-5vDYYSbewBazuZHuxYOqkCUHgP5t-K_MoxStLocX/pub?gid=0&single=true&output=csv"
@@ -20,37 +79,11 @@ d3.csv(
 	.then(function(data) {
 		console.log(data);
 
-		// display count in heading
+		// display count
 		d3.select("#count").text(data.length);
 
-		// create checkboxes to filter techniques
-		var filters = d3
-			.select("#filters")
-			.selectAll("div")
-			.data(facets)
-			.enter()
-			.append("div")
-			// .classed("input", true)
-			.attr("id", d => "select_" + d);
-
-		filters.append("h3").html(d => d);
-
-		var checkboxes = filters
-			.selectAll("input")
-			.data(d => taxonomy[d])
-			.enter()
-			.append("label");
-
-		checkboxes
-			.append("input")
-			.attr("type", "checkbox")
-			.attr("id", d => "check_" + d)
-			.attr("value", d => d);
-
-		checkboxes.append("span").text(d => d);
-
 		// listen for changes in dropdown
-		d3.selectAll("input").on("change", function() {
+		d3.selectAll(".input").on("change", function() {
 			// get filter values
 			var filters = facets.map(function(facet) {
 				var cats = [];
