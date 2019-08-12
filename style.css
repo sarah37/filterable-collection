@@ -1,6 +1,5 @@
 html,
 body {
-	/*margin: 15px;*/
 	font-family: "Red Hat Text", sans-serif;
 	background-color: slategrey;
 	color: #fafafa;
@@ -14,7 +13,6 @@ body {
 	height: 100vh;
 	align-content: stretch;
 	justify-content: stretch;
-	/*overflow: hidden;*/
 }
 
 #controls {
@@ -26,7 +24,6 @@ body {
 	grid-row: 1;
 	grid-column: 2;
 	padding: 10px;
-	/*overflow: auto;*/
 }
 
 span #count {
@@ -46,6 +43,7 @@ h1 {
 	text-transform: uppercase;
 	font-size: 2.2em;
 	text-shadow: #303235 2px -2px 0px;
+	margin: 20px 0 10px 0;
 }
 
 h2 {
@@ -62,6 +60,12 @@ h3 {
 h2,
 h3 {
 	text-shadow: #303235 1px -1px 0;
+}
+
+a {
+	color: #fafafa;
+	text-decoration: none;
+	border-bottom: 1px solid #fafafa;
 }
 
 hr {
@@ -98,10 +102,6 @@ hr {
 	box-shadow: #55626f 1px -1px 0;
 	border: 1px solid #424c55;
 }
-
-/*.tag.paper_type {
-	background-color: #e8e8e8;
-}*/
 
 .geography_representation,
 #filters
