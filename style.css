@@ -28,6 +28,7 @@ body {
 	grid-row: 1;
 	grid-column: 2;
 	padding: 10px;
+	margin-left: 10px;
 }
 
 span #count {
