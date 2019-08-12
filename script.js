@@ -73,9 +73,7 @@ d3.select("#showall").on("click", function() {
 	eventHandler.dispatchEvent(event);
 });
 
-d3.csv(
-	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSw8TQqogki3JTHU-jdofvhu0RjSwgzSM65Z5w-5vDYYSbewBazuZHuxYOqkCUHgP5t-K_MoxStLocX/pub?gid=0&single=true&output=csv"
-)
+d3.csv("techniques.csv")
 	.then(function(data) {
 		console.log(data);
 
