@@ -122,20 +122,24 @@ d3.csv("techniques.csv")
 
 		div.append("img").attr("src", d => "img/" + d.image + ".png");
 		div.append("h2").text(d => d.Title);
-		div.append("span").text(d => d.Author);
-		div.append("br");
-		div.append("span").text(d => d["Publication Year"]);
-		div.append("br");
 		div
-			.append("a")
-			.attr("href", d => "https://doi.org/" + d.DOI)
-			.attr("target", "_blank")
-			.text("[DOI Link]");
-		div.append("br");
+			.append("span")
+			.html(d =>
+				[
+					d.Author,
+					" (",
+					d["Publication Year"],
+					") <a href=https://doi.org/",
+					d.DOI,
+					' target="_blank">[DOI Link]</a>',
+					"<br>"
+				].join("")
+			);
+		var tags = div.append("div").style("margin-top", "7px");
 
 		// add tags on technique cards
 		facets.forEach(function(facet) {
-			div
+			tags
 				.append("div")
 				.classed("tag", true)
 				.classed(facet, true)

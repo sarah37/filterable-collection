@@ -15,6 +15,10 @@ body {
 	justify-content: stretch;
 }
 
+.grid-container a {
+	color: #222;
+}
+
 #controls {
 	grid-row: 1;
 	grid-column: 1;
@@ -62,7 +66,7 @@ h3 {
 	text-shadow: #303235 1px -1px 0;
 }
 
-a {
+#controls a {
 	color: #fafafa;
 	text-decoration: none;
 	border-bottom: 1px solid #fafafa;
