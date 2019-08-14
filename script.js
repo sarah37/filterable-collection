@@ -1,6 +1,11 @@
 const taxonomy = {
 	geography_representation: ["map", "distorted", "abstract"],
-	network_representation: ["low-low", "low-high", "high-low", "high-high"],
+	network_representation: [
+		"explicit-explicit",
+		"explicit-abstract",
+		"abstract-explicit",
+		"abstract-abstract"
+	],
 	integration: ["base-geo", "balanced", "base-net"],
 	interaction: [
 		"no-interaction",
@@ -16,10 +21,10 @@ const longWords = {
 	distorted: "Distorted Map",
 	abstract: "Abstract",
 	network_representation: "Network Representation",
-	"low-low": "Explicit Nodes & Explicit Edges",
-	"low-high": "Explicit Nodes & Abstract Edges",
-	"high-low": "Abstract Nodes & Explicit Edges",
-	"high-high": "Abstract Nodes & Abstract Edges",
+	"explicit-explicit": "Explicit Nodes & Explicit Edges",
+	"explicit-abstract": "Explicit Nodes & Abstract Edges",
+	"abstract-explicit": "Abstract Nodes & Explicit Edges",
+	"abstract-abstract": "Abstract Nodes & Abstract Edges",
 	integration: "Integration",
 	"base-geo": "Geography as Basis",
 	balanced: "Balanced",
@@ -73,7 +78,10 @@ d3.select("#showall").on("click", function() {
 	eventHandler.dispatchEvent(event);
 });
 
-d3.csv("techniques.csv")
+d3.csv(
+	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSM2yvMWFdJtSJehKjNKQNd15tfjXEQpXA_ZbqUhFaVMXjtxqDtUlSkrVcOPLr1BYJ9J-6dMIJ0JSls/pub?gid=0&single=true&output=csv"
+	// "techniques.csv"
+)
 	.then(function(data) {
 		console.log(data);
 
@@ -103,10 +111,10 @@ d3.csv("techniques.csv")
 			// update count in heading
 			d3.select("#count").text(fData.length);
 			// get IDs of techniques matching filter
-			var ids = fData.map(d => d.Key);
+			var ids = fData.map(d => d.image);
 			// hide all non-matching ones
 			d3.selectAll(".grid-item").style("display", d =>
-				ids.indexOf(d.Key) != -1 ? null : "none"
+				ids.indexOf(d.image) != -1 ? null : "none"
 			);
 			// update layout
 			msnry.layout();
