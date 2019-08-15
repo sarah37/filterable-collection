@@ -112,10 +112,7 @@ checkData
 	.append("span")
 	.text(d => dataTypesLong[d]);
 
-d3.csv(
-	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSM2yvMWFdJtSJehKjNKQNd15tfjXEQpXA_ZbqUhFaVMXjtxqDtUlSkrVcOPLr1BYJ9J-6dMIJ0JSls/pub?gid=0&single=true&output=csv"
-	// "techniques.csv"
-)
+d3.csv("techniques.csv")
 	.then(function(data) {
 		console.log(data);
 
