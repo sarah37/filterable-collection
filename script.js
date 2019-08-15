@@ -15,6 +15,21 @@ const taxonomy = {
 	]
 };
 
+const dataTypesLong = {
+	data_directed: "Directed graph",
+	data_undirected: "Undirected graph",
+	data_weighted: "Weighted edges",
+	data_edge_attributes: "Edges with additional attributes",
+	data_no_edge_attributes: "Edges without attributes",
+	data_dynamic: "Dynamic (time-varying) data",
+	data_precise_coord: "Precise point locations",
+	data_area: "Area locations",
+	data_uncertain_coord: "Uncertain locations",
+	data_graph_uncertain: "Uncertain graph structure"
+};
+
+const dataTypes = Object.keys(dataTypesLong);
+
 const longWords = {
 	geography_representation: "Geography Representation",
 	map: "Map",
@@ -78,6 +93,25 @@ d3.select("#showall").on("click", function() {
 	eventHandler.dispatchEvent(event);
 });
 
+// checkboxes for data types
+var checkData = d3
+	.select("#filters_data")
+	.selectAll("div")
+	.data(dataTypes)
+	.enter()
+	.append("div");
+checkData
+	.append("input")
+	.attr("type", "checkbox")
+	.attr("class", "input")
+	.attr("id", d => "check_" + d)
+	.attr("value", d => d);
+checkData
+	.append("label")
+	.attr("for", d => "check_" + d)
+	.append("span")
+	.text(d => dataTypesLong[d]);
+
 d3.csv(
 	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSM2yvMWFdJtSJehKjNKQNd15tfjXEQpXA_ZbqUhFaVMXjtxqDtUlSkrVcOPLr1BYJ9J-6dMIJ0JSls/pub?gid=0&single=true&output=csv"
 	// "techniques.csv"
@@ -88,7 +122,7 @@ d3.csv(
 		// display count
 		d3.select("#count").text(data.length);
 
-		// listen for changes in dropdown
+		// listen for changes in filters
 		d3.selectAll(".input").on("change", function() {
 			// get filter values
 			var filters = facets.map(function(facet) {
@@ -101,13 +135,16 @@ d3.csv(
 				return [facet, cats];
 			});
 
+			var dataFilters = dataTypes.filter(function(d) {
+				return d3.select("#check_" + d).property("checked");
+			});
 			// update
-			refreshTechniques(filters);
+			refreshTechniques(filters, dataFilters);
 		});
 
-		function refreshTechniques(filters) {
+		function refreshTechniques(filters, dataFilters) {
 			// filter
-			var fData = data.filter(d => filterData(d, filters));
+			var fData = data.filter(d => filterData(d, filters, dataFilters));
 			// update count in heading
 			d3.select("#count").text(fData.length);
 			// get IDs of techniques matching filter
@@ -169,13 +206,18 @@ d3.csv(
 		throw error;
 	});
 
-function filterData(d, filters) {
-	return filters.every(function(fil) {
-		// facet: fil[0]
-		// selected: fil[1]
-		// check if either array is empty or category is selected
-		return fil[1].length == 0 || fil[1].indexOf(d[fil[0]]) != -1;
-	});
+function filterData(d, filters, dataFilters) {
+	return (
+		filters.every(function(fil) {
+			// facet: fil[0]
+			// selected: fil[1]
+			// check if either array is empty or category is selected
+			return fil[1].length == 0 || fil[1].indexOf(d[fil[0]]) != -1;
+		}) &&
+		dataFilters.every(function(fil) {
+			return d[fil] > 0;
+		})
+	);
 }
 
 function unique(arr, acc) {
