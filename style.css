@@ -1,8 +1,11 @@
 html,
 body {
-	font-family: "Red Hat Text", sans-serif;
-	background-color: slategrey;
+	font-family: "Open Sans", sans-serif;
+	background-color: #4f535b;
 	color: #fafafa;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
 }
 
 .grid-container {
@@ -11,6 +14,7 @@ body {
 	grid-template-rows: 1fr;
 	align-content: stretch;
 	justify-content: stretch;
+	margin: 25px 20px;
 }
 
 .grid-container a {
@@ -25,8 +29,8 @@ body {
 #container {
 	grid-row: 1;
 	grid-column: 2;
-	padding: 10px;
-	margin-left: 10px;
+	/*padding: 10px;*/
+	margin-left: 20px;
 }
 
 span #count {
@@ -40,23 +44,27 @@ span #count {
 	box-shadow: #282828 0 0 7px;
 	margin: 10px 0;
 	padding: 10px;
+	font-weight: 300;
+	font-size: 14px;
 }
 
 h1 {
 	text-transform: uppercase;
-	font-size: 2.2em;
-	text-shadow: #303235 2px -2px 0px;
-	margin: 20px 0 10px 0;
+	font-size: 38px;
+	text-shadow: #888 2px 2px 0px;
+	margin: 0 0 10px 0;
 }
 
 h2 {
+	font-size: 18px;
+	font-weight: 700;
 	margin-bottom: 2px;
 }
 
 h3 {
-	line-height: 20px;
-	font-size: 18px;
-	margin-top: 18px;
+	line-height: 16px;
+	font-size: 16px;
+	margin-top: 22px;
 	margin-bottom: 7px;
 }
 
@@ -69,10 +77,6 @@ h3 {
 	color: #fafafa;
 	text-decoration: none;
 	border-bottom: 1px solid #fafafa;
-}
-
-hr {
-	border-top: 4px dotted #fafafa;
 }
 
 #showall {
@@ -88,7 +92,8 @@ hr {
 }
 
 .grid-item h2 {
-	font-size: 16px;
+	font-size: 15px;
+	font-weight: 600;
 	text-shadow: none;
 	margin: 8px 0;
 }
@@ -100,10 +105,14 @@ hr {
 .tag {
 	display: inline-block;
 	padding: 0px 4px;
+	font-size: 13px;
+	font-weight: 400;
 	margin: 3px 3px;
 	color: #222;
-	box-shadow: #55626f 1px -1px 0;
-	border: 1px solid #424c55;
+	border: 2px solid rgba(0, 0, 0, 0.2);
+	border-radius: 0 2px 0 2px;
+	border-top: none;
+	border-left: none;
 }
 
 .geography_representation,
@@ -138,31 +147,32 @@ div.checkbox-container {
 
 #filters label {
 	display: block;
+	font-size: 14px;
 	line-height: 52px;
 	background-color: #fafafa;
 	color: black;
 	text-align: center;
-	padding: 3px 5px;
+	padding: 3px 4px;
 	margin: 2px;
-	border: black 1px solid;
+	box-shadow: #282828 0 0 5px;
 }
 
 #filters label span {
 	display: inline-block;
 	vertical-align: middle;
-	padding: 3px 5px;
+	/*padding: 3px 5px;*/
 	line-height: normal; /* Reset line-height for the child. */
 	background: none;
 }
 
 #select_interaction label,
 #select_network_representation label {
-	width: 134px;
+	width: 138px;
 }
 
 #select_geography_representation label,
 #select_integration label {
-	width: 84px;
+	width: 88px;
 }
 
 #filters input[type="checkbox"] {
@@ -176,10 +186,9 @@ div.checkbox-container {
 #filters .legend_circle {
 	content: "";
 	display: inline-block;
-	padding: 10px;
-	border-radius: 10px;
-	margin-right: 8px;
-	border: 1px solid #34404a;
+	padding: 7px;
+	border-radius: 7px;
+	margin: 0 6px 0 3px;
 }
 
 @media print {
