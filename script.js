@@ -1,10 +1,10 @@
 const taxonomy = {
 	geography_representation: ["map", "distorted", "abstract"],
 	network_representation: [
-		"explicit-explicit",
-		"explicit-abstract",
 		"abstract-explicit",
-		"abstract-abstract"
+		"abstract-abstract",
+		"explicit-explicit",
+		"explicit-abstract"
 	],
 	integration: ["base-geo", "balanced", "base-net"],
 	interaction: [
