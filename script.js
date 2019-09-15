@@ -44,10 +44,10 @@ const longWords = {
 	"base-geo": "Geography as Basis",
 	balanced: "Balanced",
 	"base-net": "Network as Basis",
-	interaction: "User Interaction",
-	"no-interaction": "None",
-	"optional-interaction": "Optional",
-	"required-interaction": "Required",
+	interaction: "Interaction",
+	"no-interaction": "No Interaction",
+	"optional-interaction": "Optional Interaction",
+	"required-interaction": "Required Interaction",
 	"interaction-technique": "Interaction Technique"
 };
 
