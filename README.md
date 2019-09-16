@@ -1,6 +1,15 @@
-# Geographic Network Visualisation
-*Sarah Schöttler*
+# Geographic Network Visualization Techniques: A Work-In-Progress Taxonomy
+*Sarah Schöttler, Tobias Kauer, Benjamin Bach*
 
-This is the companion website for my dissertation for my MSc in Design Informatics at the University of Edinburgh. For my dissertation, I have developed a taxonomy and collected and classified techniques to visualise geographic networks. The collected techniques and their classification are shown on this website.
+In my MSc dissertation, I developed a taxonomy for geographic network visualization techniques based on a survey of 60 techniques. We are now presenting this work as a poster at Graph Drawing 2019 with the aim to develop it further. The taxonomy categorizes each technique across four facets: 
+* how the geographic aspect is represented
+* how the network aspect is represented
+* how these two visual representations are integrated
+* whether the technique relies on user interaction
 
-[sarah37.github.io/geographic-networks](https://sarah37.github.io/geographic-networks/)
+Links:
+* Current collection of techniques and their classification: [geographic-networks.github.io](https://geographic-networks.github.io/)
+* [Read the abstract](https://geographic-networks.github.io/abstract.pdf)
+
+
+
