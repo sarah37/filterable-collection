@@ -135,9 +135,11 @@ d3.csv(
 				return [facet, cats];
 			});
 
-			var dataFilters = dataTypes.filter(function(d) {
-				return d3.select("#check_" + d).property("checked");
-			});
+			// var dataFilters = dataTypes.filter(function(d) {
+			// 	console.log(d);
+			// 	return d3.select("#check_" + d).property("checked");
+			// });
+			var dataFilters = [];
 			// update
 			refreshTechniques(filters, dataFilters);
 		});
