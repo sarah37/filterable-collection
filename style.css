@@ -115,7 +115,11 @@ h3 {
 	border-left: none;
 }
 
-.geography_representation,
+#filters input[type="checkbox"]:checked + label {
+	background-color: #dbd6d6;
+}
+
+/*.geography_representation,
 #filters
 	#select_geography_representation
 	input[type="checkbox"]:checked
@@ -136,7 +140,7 @@ h3 {
 .interaction,
 #filters #select_interaction input[type="checkbox"]:checked + label {
 	background-color: #ebd1f0;
-}
+}*/
 
 /*Checkboxes*/
 div.checkbox-container {
@@ -163,16 +167,6 @@ div.checkbox-container {
 	/*padding: 3px 5px;*/
 	line-height: normal; /* Reset line-height for the child. */
 	background: none;
-}
-
-#select_interaction label,
-#select_network_representation label {
-	width: 138px;
-}
-
-#select_geography_representation label,
-#select_integration label {
-	width: 88px;
 }
 
 #filters input[type="checkbox"] {

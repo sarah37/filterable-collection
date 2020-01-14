@@ -47,6 +47,7 @@ checkboxes
 checkboxes
 	.append("label")
 	.attr("for", d => "check_" + d)
+	.style("width", (d, i, arr) => 250 / arr.length + "px") // TO DO should be: 138 for 2, 88 for 3
 	.append("span")
 	.text(d => formatText(d));
 
