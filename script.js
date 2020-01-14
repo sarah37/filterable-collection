@@ -17,11 +17,6 @@ const taxonomy = {
 
 const facets = Object.keys(taxonomy);
 
-function formatText(d) {
-	// TO DO capitalise and replace underscores by spaces
-	return d;
-}
-
 const container = d3.select(".grid");
 
 // create checkboxes to filter techniques
@@ -163,4 +158,19 @@ function unique(arr, acc) {
 	return arr.map(acc).filter(function(value, index, self) {
 		return self.indexOf(value) === index;
 	});
+}
+
+function formatText(str) {
+	// capitalise and replace underscores by spaces
+	// replace first letter
+	str = str.slice(0, 1).toUpperCase() + str.slice(1);
+	// find all underscores, replace by spaces and capitalise following letter
+	while (str.indexOf("_") != -1) {
+		str =
+			str.slice(0, str.indexOf("_")) +
+			" " +
+			str.slice(str.indexOf("_") + 1, str.indexOf("_") + 2).toUpperCase() +
+			str.slice(str.indexOf("_") + 2);
+	}
+	return str;
 }
