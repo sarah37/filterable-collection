@@ -1,15 +1,44 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Geographic Network Visualisation</title>
+		<link rel="stylesheet" href="style.css" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,700&display=swap&subset=latin-ext"
+			rel="stylesheet"
+		/>
+		<!-- <script src="lib/d3.v5.min.js"></script> -->
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+		<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+	</head>
+	<body>
+		<!-- to handle js-generated events -->
+		<div id="eventHandler" class="input hidden"></div>
 
-<head>
-	<meta charset="UTF-8">
-</head>
+		<div class="grid-container">
+			<div id="controls">
+				<h1>Geographic Network Visualisation</h1>
+				<a href="https://github.com/sarah37/geographic-networks" target="_blank"
+					>About / View on GitHub</a
+				>
+				<!-- <hr /> -->
+				<h2>Select filters:</h2>
+				<span id="count"></span> techniques (<span href="#" id="showall"
+					>show all</span
+				>)
 
-<body>
-	<script>
-		window.location = "https://geographic-networks.github.io/";
-	</script>
+				<div id="filters"></div>
 
-</body>
+				<h2>Filter by data type:</h2>
+				Select data types that must be supported.
+				<div id="filters_data"></div>
+			</div>
 
+			<div id="container" class="grid"></div>
+		</div>
+
+		<script type="text/javascript" src="script.js"></script>
+	</body>
 </html>
