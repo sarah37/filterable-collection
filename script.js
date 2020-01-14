@@ -1,10 +1,10 @@
 const taxonomy = {
 	geography_representation: ["map", "distorted", "abstract"],
 	network_representation: [
-		"explicit-explicit",
-		"explicit-abstract",
 		"abstract-explicit",
-		"abstract-abstract"
+		"abstract-abstract",
+		"explicit-explicit",
+		"explicit-abstract"
 	],
 	integration: ["base-geo", "balanced", "base-net"],
 	interaction: [
@@ -44,10 +44,10 @@ const longWords = {
 	"base-geo": "Geography as Basis",
 	balanced: "Balanced",
 	"base-net": "Network as Basis",
-	interaction: "User Interaction",
-	"no-interaction": "None",
-	"optional-interaction": "Optional",
-	"required-interaction": "Required",
+	interaction: "Interaction",
+	"no-interaction": "No Interaction",
+	"optional-interaction": "Optional Interaction",
+	"required-interaction": "Required Interaction",
 	"interaction-technique": "Interaction Technique"
 };
 
@@ -112,7 +112,10 @@ checkData
 	.append("span")
 	.text(d => dataTypesLong[d]);
 
-d3.csv("techniques.csv")
+// d3.csv("techniques.csv")
+d3.csv(
+	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSM2yvMWFdJtSJehKjNKQNd15tfjXEQpXA_ZbqUhFaVMXjtxqDtUlSkrVcOPLr1BYJ9J-6dMIJ0JSls/pub?gid=0&single=true&output=csv"
+)
 	.then(function(data) {
 		console.log(data);
 
@@ -132,9 +135,11 @@ d3.csv("techniques.csv")
 				return [facet, cats];
 			});
 
-			var dataFilters = dataTypes.filter(function(d) {
-				return d3.select("#check_" + d).property("checked");
-			});
+			// var dataFilters = dataTypes.filter(function(d) {
+			// 	console.log(d);
+			// 	return d3.select("#check_" + d).property("checked");
+			// });
+			var dataFilters = [];
 			// update
 			refreshTechniques(filters, dataFilters);
 		});

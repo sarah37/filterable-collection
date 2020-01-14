@@ -5,10 +5,9 @@
 		<title>Geographic Network Visualisation</title>
 		<link rel="stylesheet" href="style.css" />
 		<link
-			href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,700&display=swap&subset=latin-ext"
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap"
 			rel="stylesheet"
 		/>
-		<!-- <script src="lib/d3.v5.min.js"></script> -->
 		<script src="https://d3js.org/d3.v5.min.js"></script>
 		<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 		<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
@@ -20,8 +19,22 @@
 		<div class="grid-container">
 			<div id="controls">
 				<h1>Geographic Network Visualisation</h1>
-				<a href="https://github.com/sarah37/geographic-networks" target="_blank"
-					>About / View on GitHub</a
+				<a
+					href="https://github.com/geographic-networks/geographic-networks.github.io/blob/master/README.md"
+					target="_blank"
+					>About</a
+				>
+				&#8226;
+				<a
+					href="https://geographic-networks.github.io/poster.pdf"
+					target="_blank"
+					>Poster</a
+				>
+				&#8226;
+				<a
+					href="https://geographic-networks.github.io/abstract.pdf"
+					target="_blank"
+					>Read the abstract</a
 				>
 				<!-- <hr /> -->
 				<h2>Select filters:</h2>
@@ -31,9 +44,9 @@
 
 				<div id="filters"></div>
 
-				<h2>Filter by data type:</h2>
+				<!-- <h2>Filter by data type:</h2>
 				Select data types that must be supported.
-				<div id="filters_data"></div>
+				<div id="filters_data"></div> -->
 			</div>
 
 			<div id="container" class="grid"></div>
