@@ -1,7 +1,7 @@
 html,
 body {
 	font-family: "Open Sans", sans-serif;
-	background-color: #4f535b;
+	background-color: #3c3c3c;
 	color: #fafafa;
 	margin: 0;
 	padding: 0;
@@ -51,7 +51,7 @@ span #count {
 h1 {
 	text-transform: uppercase;
 	font-size: 38px;
-	text-shadow: #888 2px 2px 0px;
+	text-shadow: #888 0px 0px 3px;
 	margin: 0 0 10px 0;
 }
 
@@ -66,11 +66,6 @@ h3 {
 	font-size: 16px;
 	margin-top: 22px;
 	margin-bottom: 7px;
-}
-
-h2,
-h3 {
-	text-shadow: #303235 1px -1px 0;
 }
 
 #controls a {
@@ -118,29 +113,6 @@ h3 {
 #filters input[type="checkbox"]:checked + label {
 	background-color: #dbd6d6;
 }
-
-/*.geography_representation,
-#filters
-	#select_geography_representation
-	input[type="checkbox"]:checked
-	+ label {
-	background-color: #d8f5ff;
-}
-
-.network_representation,
-#filters #select_network_representation input[type="checkbox"]:checked + label {
-	background-color: #fffdd3;
-}
-
-.integration,
-#filters #select_integration input[type="checkbox"]:checked + label {
-	background-color: #dcf0d1;
-}
-
-.interaction,
-#filters #select_interaction input[type="checkbox"]:checked + label {
-	background-color: #ebd1f0;
-}*/
 
 /*Checkboxes*/
 div.checkbox-container {
