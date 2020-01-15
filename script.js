@@ -3,8 +3,8 @@ const url =
 
 const taxonomy = {
 	geography_representation: ["mapped", "distorted", "abstract"],
-	node_representation: ["abstract", "explicit"],
-	edge_representation: ["abstract", "explicit"],
+	node_representation: ["explicit", "abstract"],
+	edge_representation: ["explicit", "abstract"],
 	composition: [
 		"juxtaposed",
 		"integrated",
@@ -12,7 +12,7 @@ const taxonomy = {
 		"overloaded",
 		"nested"
 	],
-	interaction: ["none", "optional", "required", "interaction_technique"]
+	interactivity: ["none", "optional", "required", "interaction_technique"]
 };
 
 const facets = Object.keys(taxonomy);
@@ -42,11 +42,15 @@ checkboxes
 	.append("input")
 	.attr("type", "checkbox")
 	.attr("class", "input")
-	.attr("id", d => "check_" + d)
+	.attr("id", function(d) {
+		return "check_" + d3.select(this.parentNode.parentNode).datum() + "_" + d;
+	})
 	.attr("value", d => d);
 checkboxes
 	.append("label")
-	.attr("for", d => "check_" + d)
+	.attr("for", function(d) {
+		return "check_" + d3.select(this.parentNode.parentNode).datum() + "_" + d;
+	})
 	.style("width", (d, i, arr) => 250 / arr.length + "px") // TO DO should be: 138 for 2, 88 for 3
 	.append("span")
 	.text(d => formatText(d));
@@ -71,7 +75,7 @@ d3.csv(url)
 			var filters = facets.map(function(facet) {
 				var cats = [];
 				taxonomy[facet].forEach(function(cat) {
-					if (d3.select("#check_" + cat).property("checked")) {
+					if (d3.select("#check_" + facet + "_" + cat).property("checked")) {
 						cats.push(cat);
 					}
 				});
