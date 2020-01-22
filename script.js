@@ -118,9 +118,12 @@ d3.csv(url)
 					d.Author,
 					" (",
 					d["Publication Year"],
-					") <a href=https://doi.org/",
-					d.DOI,
-					' target="_blank">[DOI Link]</a>',
+					")",
+					d.DOI == ""
+						? ""
+						: " <a href=https://doi.org/" +
+						  d.DOI +
+						  ' target="_blank">[DOI Link]</a>',
 					"<br>"
 				].join("")
 			);
