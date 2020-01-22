@@ -116,7 +116,9 @@ d3.csv(url)
 			.html(d =>
 				[
 					d.Author,
-					" (",
+					". <i>",
+					d["Publication Title"],
+					"</i> (",
 					d["Publication Year"],
 					")",
 					d.DOI == ""
