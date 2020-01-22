@@ -30,7 +30,8 @@ var filters = d3
 
 filters
 	.append("h3")
-	.html(d => '<div class="legend_circle ' + d + '"></div>' + formatText(d));
+	// .html(d => '<div class="legend_circle ' + d + '"></div>' + formatText(d));
+	.html(d => formatText(d));
 
 var checkboxes = filters
 	.selectAll("input")
@@ -51,7 +52,6 @@ checkboxes
 	.attr("for", function(d) {
 		return "check_" + d3.select(this.parentNode.parentNode).datum() + "_" + d;
 	})
-	.style("width", (d, i, arr) => 250 / arr.length + "px") // TO DO should be: 138 for 2, 88 for 3
 	.append("span")
 	.text(d => formatText(d));
 
@@ -141,8 +141,8 @@ d3.csv(url)
 			window.msnry = new Masonry(elem, {
 				// options
 				itemSelector: ".grid-item",
-				columnWidth: 270,
-				gutter: 20
+				columnWidth: 241,
+				gutter: 15
 			});
 		});
 	})

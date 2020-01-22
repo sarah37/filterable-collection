@@ -5,7 +5,7 @@ body {
 	color: #fafafa;
 	margin: 0;
 	padding: 0;
-	font-size: 14px;
+	font-size: 13px;
 }
 
 .grid-container {
@@ -29,7 +29,6 @@ body {
 #container {
 	grid-row: 1;
 	grid-column: 2;
-	/*padding: 10px;*/
 	margin-left: 20px;
 }
 
@@ -38,14 +37,13 @@ span #count {
 }
 
 .grid-item {
-	width: 250px;
+	width: 225px;
 	background-color: #fff;
 	color: #222;
 	box-shadow: #282828 0 0 7px;
-	margin: 10px 0;
-	padding: 10px;
+	margin: 8px 0;
+	padding: 8px;
 	font-weight: 300;
-	font-size: 14px;
 }
 
 h1 {
@@ -66,6 +64,7 @@ h3 {
 	font-size: 16px;
 	margin-top: 22px;
 	margin-bottom: 7px;
+	text-align: left;
 }
 
 #controls a {
@@ -87,7 +86,7 @@ h3 {
 }
 
 .grid-item h2 {
-	font-size: 15px;
+	font-size: 14px;
 	font-weight: 600;
 	text-shadow: none;
 	margin: 8px 0;
@@ -100,7 +99,6 @@ h3 {
 .tag {
 	display: inline-block;
 	padding: 0px 4px;
-	font-size: 13px;
 	font-weight: 400;
 	margin: 3px 3px;
 	color: #222;
@@ -108,6 +106,10 @@ h3 {
 	border-radius: 0 2px 0 2px;
 	border-top: none;
 	border-left: none;
+}
+
+#filters {
+	text-align: center;
 }
 
 #filters input[type="checkbox"]:checked + label {
@@ -123,7 +125,6 @@ div.checkbox-container {
 
 #filters label {
 	display: block;
-	font-size: 14px;
 	line-height: 52px;
 	background-color: #fafafa;
 	color: black;
@@ -136,7 +137,6 @@ div.checkbox-container {
 #filters label span {
 	display: inline-block;
 	vertical-align: middle;
-	/*padding: 3px 5px;*/
 	line-height: normal; /* Reset line-height for the child. */
 	background: none;
 }
@@ -167,4 +167,15 @@ div.checkbox-container {
 	a {
 		display: none;
 	}
+}
+
+#select_geography_representation label,
+#select_composition label {
+	width: 88px;
+}
+
+#select_node_representation label,
+#select_interactivity label,
+#select_edge_representation label {
+	width: 138px;
 }
