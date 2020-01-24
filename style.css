@@ -170,12 +170,13 @@ div.checkbox-container {
 }
 
 #select_geography_representation label,
+#select_node_representation label,
+#select_edge_representation label,
 #select_composition label {
 	width: 88px;
 }
 
-#select_node_representation label,
-#select_interactivity label,
-#select_edge_representation label {
+#select_interactivity label {
 	width: 138px;
 }
+

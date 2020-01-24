@@ -3,8 +3,8 @@ const url =
 
 const taxonomy = {
 	geography_representation: ["mapped", "distorted", "abstract"],
-	node_representation: ["explicit", "abstract"],
-	edge_representation: ["explicit", "abstract"],
+	node_representation: ["explicit", "aggregated", "abstract"],
+	edge_representation: ["explicit", "aggregated", "abstract"],
 	composition: [
 		"juxtaposed",
 		"integrated",
