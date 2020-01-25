@@ -67,7 +67,7 @@ d3.csv(url)
 		console.log(data);
 
 		// display count
-		d3.select("#count").text(data.length);
+		d3.selectAll("#count, #total").text(data.length);
 
 		// listen for changes in filters
 		d3.selectAll(".input").on("change", function() {

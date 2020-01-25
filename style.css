@@ -73,6 +73,10 @@ h3 {
 	border-bottom: 1px solid #fafafa;
 }
 
+#count {
+	font-weight: bold;
+}
+
 #showall {
 	border-bottom: 1px solid #fafafa;
 	cursor: pointer;
