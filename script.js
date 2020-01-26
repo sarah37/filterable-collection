@@ -1,54 +1,18 @@
+const url =
+	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSwh2Ky68rP-CsY-HdiVrf0K15aXCfLMLH0Z01Ks1DxXNMHzGq2vz4rgJReNxtfJ1QTd021dL7FrxRf/pub?gid=1279081803&single=true&output=csv";
+
 const taxonomy = {
-	geography_representation: ["map", "distorted", "abstract"],
-	network_representation: [
-		"abstract-explicit",
-		"abstract-abstract",
-		"explicit-explicit",
-		"explicit-abstract"
+	geography_representation: ["mapped", "distorted", "abstract"],
+	node_representation: ["explicit", "aggregated", "abstract"],
+	link_representation: ["explicit", "aggregated", "abstract"],
+	composition: [
+		"juxtaposed",
+		"integrated",
+		"superimposed",
+		"overloaded",
+		"nested"
 	],
-	integration: ["base-geo", "balanced", "base-net"],
-	interaction: [
-		"no-interaction",
-		"optional-interaction",
-		"required-interaction",
-		"interaction-technique"
-	]
-};
-
-const dataTypesLong = {
-	data_directed: "Directed graph",
-	data_undirected: "Undirected graph",
-	data_weighted: "Weighted edges",
-	data_edge_attributes: "Edges with additional attributes",
-	data_no_edge_attributes: "Edges without attributes",
-	data_dynamic: "Dynamic (time-varying) data",
-	data_precise_coord: "Precise point locations",
-	data_area: "Area locations",
-	data_uncertain_coord: "Uncertain locations",
-	data_graph_uncertain: "Uncertain graph structure"
-};
-
-const dataTypes = Object.keys(dataTypesLong);
-
-const longWords = {
-	geography_representation: "Geography Representation",
-	map: "Map",
-	distorted: "Distorted Map",
-	abstract: "Abstract",
-	network_representation: "Network Representation",
-	"explicit-explicit": "Explicit Nodes & Explicit Edges",
-	"explicit-abstract": "Explicit Nodes & Abstract Edges",
-	"abstract-explicit": "Abstract Nodes & Explicit Edges",
-	"abstract-abstract": "Abstract Nodes & Abstract Edges",
-	integration: "Integration",
-	"base-geo": "Geography as Basis",
-	balanced: "Balanced",
-	"base-net": "Network as Basis",
-	interaction: "Interaction",
-	"no-interaction": "No Interaction",
-	"optional-interaction": "Optional Interaction",
-	"required-interaction": "Required Interaction",
-	"interaction-technique": "Interaction Technique"
+	interactivity: ["none", "optional", "required", "interaction_technique"]
 };
 
 const facets = Object.keys(taxonomy);
@@ -66,7 +30,8 @@ var filters = d3
 
 filters
 	.append("h3")
-	.html(d => '<div class="legend_circle ' + d + '"></div>' + longWords[d]);
+	// .html(d => '<div class="legend_circle ' + d + '"></div>' + formatText(d));
+	.html(d => formatText(d));
 
 var checkboxes = filters
 	.selectAll("input")
@@ -78,13 +43,17 @@ checkboxes
 	.append("input")
 	.attr("type", "checkbox")
 	.attr("class", "input")
-	.attr("id", d => "check_" + d)
+	.attr("id", function(d) {
+		return "check_" + d3.select(this.parentNode.parentNode).datum() + "_" + d;
+	})
 	.attr("value", d => d);
 checkboxes
 	.append("label")
-	.attr("for", d => "check_" + d)
+	.attr("for", function(d) {
+		return "check_" + d3.select(this.parentNode.parentNode).datum() + "_" + d;
+	})
 	.append("span")
-	.text(d => longWords[d]);
+	.text(d => formatText(d));
 
 d3.select("#showall").on("click", function() {
 	d3.selectAll("input").property("checked", false);
@@ -93,34 +62,12 @@ d3.select("#showall").on("click", function() {
 	eventHandler.dispatchEvent(event);
 });
 
-// checkboxes for data types
-var checkData = d3
-	.select("#filters_data")
-	.selectAll("div")
-	.data(dataTypes)
-	.enter()
-	.append("div");
-checkData
-	.append("input")
-	.attr("type", "checkbox")
-	.attr("class", "input")
-	.attr("id", d => "check_" + d)
-	.attr("value", d => d);
-checkData
-	.append("label")
-	.attr("for", d => "check_" + d)
-	.append("span")
-	.text(d => dataTypesLong[d]);
-
-// d3.csv("techniques.csv")
-d3.csv(
-	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSM2yvMWFdJtSJehKjNKQNd15tfjXEQpXA_ZbqUhFaVMXjtxqDtUlSkrVcOPLr1BYJ9J-6dMIJ0JSls/pub?gid=0&single=true&output=csv"
-)
+d3.csv(url)
 	.then(function(data) {
 		console.log(data);
 
 		// display count
-		d3.select("#count").text(data.length);
+		d3.selectAll("#count, #total").text(data.length);
 
 		// listen for changes in filters
 		d3.selectAll(".input").on("change", function() {
@@ -128,25 +75,20 @@ d3.csv(
 			var filters = facets.map(function(facet) {
 				var cats = [];
 				taxonomy[facet].forEach(function(cat) {
-					if (d3.select("#check_" + cat).property("checked")) {
+					if (d3.select("#check_" + facet + "_" + cat).property("checked")) {
 						cats.push(cat);
 					}
 				});
 				return [facet, cats];
 			});
 
-			// var dataFilters = dataTypes.filter(function(d) {
-			// 	console.log(d);
-			// 	return d3.select("#check_" + d).property("checked");
-			// });
-			var dataFilters = [];
 			// update
-			refreshTechniques(filters, dataFilters);
+			refreshTechniques(filters);
 		});
 
-		function refreshTechniques(filters, dataFilters) {
+		function refreshTechniques(filters) {
 			// filter
-			var fData = data.filter(d => filterData(d, filters, dataFilters));
+			var fData = data.filter(d => filterData(d, filters));
 			// update count in heading
 			d3.select("#count").text(fData.length);
 			// get IDs of techniques matching filter
@@ -174,11 +116,16 @@ d3.csv(
 			.html(d =>
 				[
 					d.Author,
-					" (",
+					". <i>",
+					d["Publication Title"],
+					"</i> (",
 					d["Publication Year"],
-					") <a href=https://doi.org/",
-					d.DOI,
-					' target="_blank">[DOI Link]</a>',
+					")",
+					d.DOI == ""
+						? ""
+						: " <a href=https://doi.org/" +
+						  d.DOI +
+						  ' target="_blank">[DOI Link]</a>',
 					"<br>"
 				].join("")
 			);
@@ -199,8 +146,8 @@ d3.csv(
 			window.msnry = new Masonry(elem, {
 				// options
 				itemSelector: ".grid-item",
-				columnWidth: 270,
-				gutter: 20
+				columnWidth: 241,
+				gutter: 15
 			});
 		});
 	})
@@ -208,22 +155,32 @@ d3.csv(
 		throw error;
 	});
 
-function filterData(d, filters, dataFilters) {
-	return (
-		filters.every(function(fil) {
-			// facet: fil[0]
-			// selected: fil[1]
-			// check if either array is empty or category is selected
-			return fil[1].length == 0 || fil[1].indexOf(d[fil[0]]) != -1;
-		}) &&
-		dataFilters.every(function(fil) {
-			return d[fil] > 0;
-		})
-	);
+function filterData(d, filters) {
+	return filters.every(function(fil) {
+		// facet: fil[0]
+		// selected: fil[1]
+		// check if either array is empty or category is selected
+		return fil[1].length == 0 || fil[1].indexOf(d[fil[0]]) != -1;
+	});
 }
 
 function unique(arr, acc) {
 	return arr.map(acc).filter(function(value, index, self) {
 		return self.indexOf(value) === index;
 	});
+}
+
+function formatText(str) {
+	// capitalise and replace underscores by spaces
+	// replace first letter
+	str = str.slice(0, 1).toUpperCase() + str.slice(1);
+	// find all underscores, replace by spaces and capitalise following letter
+	while (str.indexOf("_") != -1) {
+		str =
+			str.slice(0, str.indexOf("_")) +
+			" " +
+			str.slice(str.indexOf("_") + 1, str.indexOf("_") + 2).toUpperCase() +
+			str.slice(str.indexOf("_") + 2);
+	}
+	return str;
 }
