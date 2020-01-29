@@ -1,5 +1,4 @@
-const url =
-	"https://docs.google.com/spreadsheets/d/e/2PACX-1vSwh2Ky68rP-CsY-HdiVrf0K15aXCfLMLH0Z01Ks1DxXNMHzGq2vz4rgJReNxtfJ1QTd021dL7FrxRf/pub?gid=1279081803&single=true&output=csv";
+const url = "geonetworks_coding.csv";
 
 const taxonomy = {
 	geography_representation: ["mapped", "distorted", "abstract"],
