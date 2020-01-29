@@ -5,13 +5,7 @@ const taxonomy = {
 	geography_representation: ["mapped", "distorted", "abstract"],
 	node_representation: ["explicit", "aggregated", "abstract"],
 	link_representation: ["explicit", "aggregated", "abstract"],
-	composition: [
-		"juxtaposed",
-		"integrated",
-		"superimposed",
-		"overloaded",
-		"nested"
-	],
+	composition: ["juxtaposed", "superimposed", "nested", "integrated"],
 	interactivity: ["none", "optional", "required", "interaction_technique"]
 };
 
