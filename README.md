@@ -1,15 +1,13 @@
-# Geographic Network Visualization Techniques: A Work-In-Progress Taxonomy
-*Sarah Schöttler, Tobias Kauer, Benjamin Bach*
+# Geospatial Network Visualization
 
-In my MSc dissertation, I developed a taxonomy for geographic network visualization techniques based on a survey of 60 techniques. We are now presenting this work as a poster at Graph Drawing 2019 with the aim to develop it further. The taxonomy categorizes each technique across four facets: 
-* how the geographic aspect is represented
-* how the network aspect is represented
-* how these two visual representations are integrated
-* whether the technique relies on user interaction
+A survey of over 80 visualization techniques for geospatial networks, and a taxonomy for their classification. View all techniques on the website: [https://geographic-networks.github.io/]
 
-Links:
-* Current collection of techniques and their classification: [geographic-networks.github.io](https://geographic-networks.github.io/)
-* [Read the abstract](https://geographic-networks.github.io/abstract.pdf)
+The taxonomy classifies techniques along four dimensions (with two sub-dimensions):
+* Geography Representation
+* Topology Representation
+  * Node Representation
+  * Link Representation
+* Composition
+* Interactivity
 
-
-
+We presented a [poster](https://geographic-networks.github.io/poster.pdf) with an in-progress version of the taxonomy at Graph Drawing 2019.
