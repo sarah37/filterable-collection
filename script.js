@@ -11,6 +11,24 @@ const taxonomy = {
 
 const facets = Object.keys(taxonomy);
 
+const datatypes = [
+	"directed_links",
+	"undirected_links",
+	"weighted_links",
+	"additional_link_attributes",
+	"no_additional_link_attributes",
+	"additional_node_attributes",
+	"dynamic_networks",
+	"exact_point_locations",
+	"area_locations",
+	"duplicate_positions",
+	"uncertain_locations",
+	"uncertain_topology",
+	"uncertain_additional_attributes",
+	"dense_networks",
+	"networks_with_varying_density",
+];
+
 const container = d3.select(".grid");
 
 // create checkboxes to filter techniques
@@ -53,6 +71,25 @@ checkboxes
 	.append("span")
 	.text((d) => formatText(d));
 
+// checkboxes for data types
+var checkData = d3
+	.select("#filters_data")
+	.selectAll("div")
+	.data(datatypes)
+	.enter()
+	.append("div");
+checkData
+	.append("input")
+	.attr("type", "checkbox")
+	.attr("class", "input")
+	.attr("id", (d) => "check_" + d)
+	.attr("value", (d) => d);
+checkData
+	.append("label")
+	.attr("for", (d) => "check_" + d)
+	.append("span")
+	.text((d) => sentenceCase(d));
+
 d3.select("#showall").on("click", function () {
 	d3.selectAll("input").property("checked", false);
 	// dispatch event to reload techniques
@@ -83,14 +120,17 @@ d3.csv(url)
 				});
 				return [facet, cats];
 			});
+			var dataFilters = datatypes.filter(function (d) {
+				return d3.select("#check_" + d).property("checked");
+			});
 
 			// update
-			refreshTechniques(filters);
+			refreshTechniques(filters, dataFilters);
 		});
 
-		function refreshTechniques(filters) {
+		function refreshTechniques(filters, dataFilters) {
 			// filter
-			var fData = data.filter((d) => filterData(d, filters));
+			var fData = data.filter((d) => filterData(d, filters, dataFilters));
 			// update count in heading
 			d3.select("#count").text(fData.length);
 			// get IDs of techniques matching filter
@@ -154,13 +194,18 @@ d3.csv(url)
 		throw error;
 	});
 
-function filterData(d, filters) {
-	return filters.every(function (fil) {
-		// facet: fil[0]
-		// selected: fil[1]
-		// check if either array is empty or category is selected
-		return fil[1].length == 0 || fil[1].indexOf(d[fil[0]]) != -1;
-	});
+function filterData(d, filters, dataFilters) {
+	return (
+		filters.every(function (fil) {
+			// facet: fil[0]
+			// selected: fil[1]
+			// check if either array is empty or category is selected
+			return fil[1].length == 0 || fil[1].indexOf(d[fil[0]]) != -1;
+		}) &&
+		dataFilters.every(function (fil) {
+			return d[fil] == "yes";
+		})
+	);
 }
 
 function unique(arr, acc) {
@@ -182,6 +227,20 @@ function formatText(str) {
 				.slice(str.indexOf("_") + 1, str.indexOf("_") + 2)
 				.toUpperCase() +
 			str.slice(str.indexOf("_") + 2);
+	}
+	return str;
+}
+
+function sentenceCase(str) {
+	// capitalise first word and replace underscores by spaces
+	// replace first letter
+	str = str.slice(0, 1).toUpperCase() + str.slice(1);
+	// find all underscores, replace by spaces and capitalise following letter
+	while (str.indexOf("_") != -1) {
+		str =
+			str.slice(0, str.indexOf("_")) +
+			" " +
+			str.slice(str.indexOf("_") + 1);
 	}
 	return str;
 }
