@@ -21,14 +21,14 @@ const datatypes = [
 	// 2/ Geolocations
 	"exact_point_locations",
 	"area_locations",
-	"duplicate_positions",
+	"colocated_nodes",
 	// 3/ Density
 	"dense_networks",
 	"networks_with_varying_density",
 	// 4/ Dynamic
 	"dynamic_networks",
 	// 5/ Uncertainty
-	"uncertain_topology",
+	"uncertain_network_topology",
 	"uncertain_locations",
 	"uncertain_additional_attributes",
 ];
