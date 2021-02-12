@@ -69,8 +69,12 @@ h3 {
 
 #controls a {
 	color: #fafafa;
-	text-decoration: none;
-	border-bottom: 1px solid #fafafa;
+	text-decoration: underline;
+	text-underline-position: under;
+}
+
+#controls a:hover {
+	text-decoration-thickness: 2px;
 }
 
 #count {
