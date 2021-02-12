@@ -1,7 +1,7 @@
 html,
 body {
 	font-family: "Open Sans", sans-serif;
-	background-color: #3c3c3c;
+	background-color: #383232;
 	color: #fafafa;
 	margin: 0;
 	padding: 0;
@@ -117,7 +117,13 @@ h3 {
 }
 
 #filters input[type="checkbox"]:checked + label {
-	background-color: #dbd6d6;
+	background-color: #cfc8c8;
+}
+
+#filters input[type="checkbox"]:checked + label span {
+	/*border-bottom: 1px solid #111;*/
+	text-decoration: underline;
+	text-underline-position: under;
 }
 
 /*Checkboxes*/
