@@ -125,7 +125,6 @@ h3 {
 }
 
 #filters input[type="checkbox"]:checked + label span {
-	/*border-bottom: 1px solid #111;*/
 	text-decoration: underline;
 	text-underline-position: under;
 }
@@ -183,13 +182,10 @@ div.checkbox-container {
 	}
 }
 
-#select_geography_representation label,
-#select_node_representation label,
-#select_link_representation label,
-#select_interactivity label {
-	width: 88px;
+.select_width2 label {
+	width: 138px;
 }
 
-#select_composition label {
-	width: 138px;
+.select_width3 label {
+	width: 88px;
 }
