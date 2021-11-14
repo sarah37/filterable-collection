@@ -1,7 +1,7 @@
 html,
 body {
 	font-family: "Open Sans", sans-serif;
-	background-color: #3c3c3c;
+	background-color: #383232;
 	color: #fafafa;
 	margin: 0;
 	padding: 0;
@@ -69,8 +69,12 @@ h3 {
 
 #controls a {
 	color: #fafafa;
-	text-decoration: none;
-	border-bottom: 1px solid #fafafa;
+	text-decoration: underline;
+	text-underline-position: under;
+}
+
+#controls a:hover {
+	text-decoration-thickness: 2px;
 }
 
 #count {
@@ -117,7 +121,13 @@ h3 {
 }
 
 #filters input[type="checkbox"]:checked + label {
-	background-color: #dbd6d6;
+	background-color: #cfc8c8;
+}
+
+#filters input[type="checkbox"]:checked + label span {
+	/*border-bottom: 1px solid #111;*/
+	text-decoration: underline;
+	text-underline-position: under;
 }
 
 /*Checkboxes*/
@@ -175,11 +185,11 @@ div.checkbox-container {
 
 #select_geography_representation label,
 #select_node_representation label,
-#select_link_representation label {
+#select_link_representation label,
+#select_interactivity label {
 	width: 88px;
 }
 
-#select_composition label,
-#select_interactivity label {
+#select_composition label {
 	width: 138px;
 }
